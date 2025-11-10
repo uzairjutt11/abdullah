@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - Abdullah Azhar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #f5f5f5;
+            background-image: 
+                linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .profile-wrapper {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border-top: 5px solid #1a3a52;
+        }
+
+        /* Header Section */
+        .profile-header {
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            color: white;
+            padding: 50px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+        }
+
+        .profile-photo-frame {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 25px;
+            position: relative;
+            border-radius: 50%;
+            padding: 5px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f0f0f0;
+        }
+
+        .student-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .student-title {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .profile-body {
+            padding: 50px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #1a3a52;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #1a3a52;
+        }
+
+        /* Academic Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 10px;
+        }
+
+        .detail-box {
+            background: #fafafa;
+            padding: 20px 25px;
+            border-radius: 6px;
+            border-left: 4px solid #1a3a52;
+            transition: all 0.3s ease;
+        }
+
+        .detail-box:hover {
+            background: #f5f5f5;
+            transform: translateX(5px);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .detail-value {
+            font-size: 18px;
+            color: #1a3a52;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* CGPA Highlight Box */
+        .cgpa-box {
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(26, 58, 82, 0.2);
+        }
+
+        .cgpa-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .cgpa-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .cgpa-scale {
+            font-size: 14px;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        /* Subjects List */
+        .subjects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subject-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 18px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .subject-item::before {
+            content: '✓';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: #1a3a52;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .subject-item:hover {
+            border-color: #1a3a52;
+            background: #fafafa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Teachers Section */
+        .teachers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .teacher-box {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 20px 25px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .teacher-box:hover {
+            border-color: #1a3a52;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .teacher-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a3a52 0%, #2c5f7f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .teacher-name {
+            font-size: 18px;
+            color: #1a3a52;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .profile-footer {
+            background: #1a3a52;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .profile-footer p {
+            opacity: 0.8;
+        }
+
+        /* Decorative Elements */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #e0e0e0, 
+                transparent);
+            margin: 35px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 40px 30px;
+            }
+
+            .profile-body {
+                padding: 40px 30px;
+            }
+
+            .student-name {
+                font-size: 32px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cgpa-number {
+                font-size: 48px;
+            }
+
+            .subjects-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .profile-wrapper {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-wrapper">
+        <!-- Header Section -->
+        <div class="profile-header">
+            <div class="profile-photo-frame">
+                <img src="Abdullah.jpg" alt="Abdullah Azhar" class="profile-photo">
+            </div>
+            <h1 class="student-name">Abdullah Azhar</h1>
+            <p class="student-title">Bachelor of Science in Information Technology</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="profile-body">
+            
+            <!-- Academic Information Section -->
+            <div class="section">
+                <h2 class="section-heading">Academic Information</h2>
+                <div class="details-grid">
+                    <div class="detail-box">
+                        <div class="detail-label">University</div>
+                        <div class="detail-value">University of Education</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Roll Number</div>
+                        <div class="detail-value">BSF23004137</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Department</div>
+                        <div class="detail-value">Information Sciences</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label">Degree Program</div>
+                        <div class="detail-value">BS IT</div>
+                    </div>
+                </div>
+
+                <!-- CGPA Highlight -->
+                <div class="cgpa-box">
+                    <div class="cgpa-label">Cumulative Grade Point Average</div>
+                    <div class="cgpa-number">3.15</div>
+                    <div class="cgpa-scale">Out of 4.00</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Favourite Subjects Section -->
+            <div class="section">
+                <h2 class="section-heading">Favourite Subjects</h2>
+                <div class="subjects-list">
+                    <div class="subject-item">Web Technologies</div>
+                    <div class="subject-item">Cyber Security</div>
+                    <div class="subject-item">English</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Favourite Teachers Section -->
+            <div class="section">
+                <h2 class="section-heading">Favourite Teachers</h2>
+                <div class="teachers-container">
+                    <div class="teacher-box">
+                        <div class="teacher-icon">👨‍🏫</div>
+                        <div class="teacher-name">Sir Muhammad Fayyaz</div>
+                    </div>
+                    <div class="teacher-box">
+                        <div class="teacher-icon">👨‍🏫</div>
+                        <div class="teacher-name">Sir Ahsan Raza</div>
+                    </div>
+                    <div class="teacher-box">
+                        <div class="teacher-icon">👨‍🏫</div>
+                        <div class="teacher-name">Sir Aleem Yahya</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="profile-footer">
+            <p>&copy; 2024 University of Education | Student Profile System</p>
+        </div>
+    </div>
+</body>
+</html>
